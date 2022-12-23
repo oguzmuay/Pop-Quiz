@@ -51,6 +51,7 @@ const LoginPage = ({title = 's', navigation}) => {
           mode={'flat'}
           onPress={() => {
             console.log('Uye Ol');
+            navigation.navigate('Register');
           }}>
           Uye Ol
         </Button>

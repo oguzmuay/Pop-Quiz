@@ -1,11 +1,13 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import {Avatar, Button} from 'react-native-paper';
+import {Avatar, Button, TextInput} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
+import {SelectList} from 'react-native-dropdown-select-list/index';
+import {CLASSES_VALUES} from '../../constants/classes';
 
 const Stack = createStackNavigator();
 
-const MyProfile = () => {
+const MyProfile = ({navigation}) => {
   return (
     <View
       style={{
@@ -23,7 +25,12 @@ const MyProfile = () => {
           alignItems: 'center',
         }}>
         <Avatar.Image size={120} />
-        <Button mode="contained" style={{width: 240, marginVertical: 24}}>
+        <Button
+          mode="contained"
+          onPress={() => {
+            navigation.navigate('EditMyProfile');
+          }}
+          style={{width: 240, marginVertical: 24}}>
           Profili Duzenle
         </Button>
         <Button mode="contained" style={{width: 240}}>
@@ -34,8 +41,36 @@ const MyProfile = () => {
   );
 };
 
-const EditMyProfile = () => {
-  return <></>;
+const EditMyProfile = ({isStudent, navigation}) => {
+  return (
+    <View style={{marginTop: 16, paddingHorizontal: 32}}>
+      <Text>{isStudent ? 'Ogrenci Numaraniz' : 'Ogretmen Numaraniz'}</Text>
+      <TextInput mode={'outlined'} label={'Ad'} />
+      <TextInput mode={'outlined'} label={'Soyad'} />
+      <View style={{marginTop: 8}}>
+        <SelectList
+          label={'Ders'}
+          placeholder={'Ders Giriniz'}
+          setSelected={value => {
+            setClass(value);
+            console.log(value);
+          }}
+          boxStyles={{borderRadius: 4}}
+          inputStyles={{fontSize: 16}}
+          dropdownTextStyles={{fontSize: 16}}
+          data={CLASSES_VALUES.map((clas, index) => {
+            return {...clas, disabled: clas.key === clas};
+          })}
+          save={'value'}
+        />
+      </View>
+      <TextInput mode={'outlined'} label={'Telefon'} />
+      <TextInput mode={'outlined'} label={'Email'} />
+      <Button mode="contained" style={{borderRadius: 4, marginTop: 16}}>
+        Gunceller
+      </Button>
+    </View>
+  );
 };
 
 const MyProfilePage = ({isStudent}) => {
