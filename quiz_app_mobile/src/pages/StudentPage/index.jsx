@@ -7,14 +7,6 @@ import QuizResultsPage from '../QuizResultsPage';
 
 const Tab = createBottomTabNavigator();
 
-const Student = () => {
-  return (
-    <View>
-      <Text>Student</Text>
-    </View>
-  );
-};
-
 const StudentPage = () => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>

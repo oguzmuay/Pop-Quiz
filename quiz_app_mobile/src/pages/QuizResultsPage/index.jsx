@@ -1,5 +1,6 @@
 import {View, Text} from 'react-native';
 import React from 'react';
+import ResultCard from '../../components/ResultCard';
 
 const QuizResultsPage = () => {
   return (
@@ -10,16 +11,12 @@ const QuizResultsPage = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 16,
       }}>
-      <Text
-        style={{
-          width: '100%',
-          fontSize: 36,
-          fontWeight: '700',
-          textAlign: 'center',
-        }}>
-        Sonuclanmis Bir Quiz'iniz Bulunmamaktadir.
-      </Text>
+      <Text style={{fontSize: 36, fontWeight: '600'}}>Quiz Sonuclari</Text>
+      <ResultCard />
+      <ResultCard />
+      <ResultCard />
     </View>
   );
 };

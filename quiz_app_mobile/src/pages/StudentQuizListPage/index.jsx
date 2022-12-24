@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import QuizNotFound from '../../components/QuizNotFound';
+import QuizCard from '../../components/QuizCard';
 
 const Page = ({}) => {
   return (
-    <View>
-      <Text>Quiziniz Var</Text>
+    <View style={{padding: 16}}>
+      <Text style={{fontSize: 36, fontWeight: '600'}}>Quizler</Text>
+      <QuizCard />
+      <QuizCard />
+      <QuizCard />
     </View>
   );
 };
 
 const StudentQuizListPage = props => {
-  const [quizzes, setQuizzes] = useState([]);
+  const [quizzes, setQuizzes] = useState([1]);
   console.log(quizzes.length);
   return (
     <View>{quizzes.length === 0 ? <QuizNotFound /> : <Page {...props} />}</View>
@@ -19,3 +23,4 @@ const StudentQuizListPage = props => {
 };
 
 export default StudentQuizListPage;
+// <QuizAnswerPage />

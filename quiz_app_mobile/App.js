@@ -7,6 +7,7 @@ import TeacherPage from './src/pages/TeacherPage';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import QuizAnswerPage from './src/pages/QuizAnswerPage';
 
 const Stack = createStackNavigator();
 
