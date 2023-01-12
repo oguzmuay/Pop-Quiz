@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
 import {toDateString} from '../../utils/date';
 
-const QuizCard = () => {
+const QuizCard = ({quiz, teacher = false}) => {
   return (
     <View
       style={{
@@ -20,18 +20,23 @@ const QuizCard = () => {
           flexDirection: 'row',
         }}>
         <View style={{flex: 1}}>
-          <Text style={{fontSize: 24, fontWeight: '600'}}>Sinav Basligi</Text>
-          <Text>Soru Sayisi: 20</Text>
+          <Text style={{fontSize: 24, fontWeight: '600'}}>{quiz?.title}</Text>
+          <Text>
+            Soru Sayisi:
+            {quiz.questionList === null ? 0 : quiz.questionList.length}
+          </Text>
         </View>
-        <View style={{display: 'flex', justifyContent: 'center'}}>
-          <Button
-            mode="contained"
-            onPress={() => {
-              console.log('Detay');
-            }}>
-            Sinava Gir
-          </Button>
-        </View>
+        {!teacher && (
+          <View style={{display: 'flex', justifyContent: 'center'}}>
+            <Button
+              mode="contained"
+              onPress={() => {
+                console.log('Detay');
+              }}>
+              Sinava Gir
+            </Button>
+          </View>
+        )}
       </View>
       <Text style={{width: '100%', textAlign: 'center'}}>
         Bitis Tarihi : {toDateString(new Date())}

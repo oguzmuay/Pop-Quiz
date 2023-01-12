@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {RadioButton} from 'react-native-paper';
-const AnswerCard = ({answer, index = 0}) => {
+const AnswerCard = ({answer, index = 0, setAnswer, selectedAnswer}) => {
   return (
     <View
       style={{
@@ -19,7 +19,12 @@ const AnswerCard = ({answer, index = 0}) => {
       <Text>
         {String.fromCharCode(65 + index)} {' - )   '} {answer}
       </Text>
-      <RadioButton />
+      <RadioButton
+        status={selectedAnswer === index ? 'checked' : 'unchecked'}
+        onPress={() => {
+          setAnswer(index);
+        }}
+      />
     </View>
   );
 };

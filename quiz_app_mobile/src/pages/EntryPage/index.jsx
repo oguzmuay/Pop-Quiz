@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import {SegmentedButtons} from 'react-native-paper';
+import {useGetAllQuestion} from '../../api/QuestionApi';
+import {useGetAllQuiz, useGetQuizByCreatorID} from '../../api/QuizApi';
 import LoginPage from '../LoginPage';
 const EntryPage = ({navigation}) => {
   const [title, setTitle] = useState('s');
