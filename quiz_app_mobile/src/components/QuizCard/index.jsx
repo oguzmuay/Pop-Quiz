@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {Button} from 'react-native-paper';
 import {toDateString} from '../../utils/date';
 
-const QuizCard = ({quiz, teacher = false}) => {
+const QuizCard = ({quiz, teacher = false, navigate}) => {
   return (
     <View
       style={{
@@ -32,6 +32,7 @@ const QuizCard = ({quiz, teacher = false}) => {
               mode="contained"
               onPress={() => {
                 console.log('Detay');
+                navigate('QuizAnswer', quiz);
               }}>
               Sinava Gir
             </Button>

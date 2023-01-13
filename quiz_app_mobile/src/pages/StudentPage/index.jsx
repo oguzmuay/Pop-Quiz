@@ -4,6 +4,7 @@ import StudentQuizListPage from '../StudentQuizListPage';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MyProfile from '../MyProfilePage';
 import QuizResultsPage from '../QuizResultsPage';
+import QuizAnswerPage from '../QuizAnswerPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,6 +12,7 @@ const StudentPage = () => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
       <Tab.Screen name={'Quizler'} component={StudentQuizListPage} />
+      <Tab.Screen name={'QuizAnswer'} component={QuizAnswerPage} />
       <Tab.Screen name={'Sonuclar'} component={QuizResultsPage} />
       <Tab.Screen name={'Profilim'} component={MyProfile} />
     </Tab.Navigator>

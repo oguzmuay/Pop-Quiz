@@ -3,7 +3,6 @@ import {FlatList, View} from 'react-native';
 import {Card, Text} from 'react-native-paper';
 
 const QuestionCard = ({question}) => {
-  console.log(question);
   return (
     <Card
       mode="outlined"

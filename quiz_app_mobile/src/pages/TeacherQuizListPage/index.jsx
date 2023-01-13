@@ -75,7 +75,6 @@ const AddNewQuestion = () => {
       </Button>
       <Button
         onPress={() => {
-          console.log(question);
           mutate({question});
           setQuestion(INITIAL_QUESTION);
         }}

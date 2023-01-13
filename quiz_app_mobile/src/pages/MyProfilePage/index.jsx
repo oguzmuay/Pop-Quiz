@@ -53,7 +53,6 @@ const EditMyProfile = ({isStudent, navigation}) => {
           placeholder={'Ders Giriniz'}
           setSelected={value => {
             setClass(value);
-            console.log(value);
           }}
           boxStyles={{borderRadius: 4}}
           inputStyles={{fontSize: 16}}

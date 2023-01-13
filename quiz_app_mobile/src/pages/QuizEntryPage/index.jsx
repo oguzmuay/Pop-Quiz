@@ -72,7 +72,11 @@ const Main = ({navigation}) => {
           mode="contained"
           onPress={() => {
             mutate({
-              quiz: {title: 'Deneme', questionList: questions, creatorId: '11'},
+              quiz: {
+                title: 'Sinavda Gostermelik',
+                questionList: questions,
+                creatorId: '11',
+              },
             });
             navigation.goBack();
           }}>
@@ -95,7 +99,6 @@ const AddNewQuestion = ({navigation, route}) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                console.log(item);
                 setQuestions(item.id);
                 navigation.goBack();
               }}

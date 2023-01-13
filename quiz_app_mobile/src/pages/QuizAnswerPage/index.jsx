@@ -1,33 +1,11 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {Button} from 'react-native-paper';
-const QuizAnswerPage = ({
-  selectedQuiz = [
-    {
-      question: 'Bu bir deneme sorusudur',
-      answers: ['Deneme 1', 'Deneme 2', 'Deneme 3', 'Deneme 4'],
-      answer: undefined,
-    },
-    {
-      question: 'Bu bir deneme sorusudur 2',
-      answers: ['Deneme 1', 'Deneme 2', 'Deneme 3', 'Deneme 4'],
-      answer: undefined,
-    },
-    {
-      question: 'Bu bir deneme sorusudur 3',
-      answers: ['Deneme 1', 'Deneme 2', 'Deneme 3', 'Deneme 4'],
-      answer: undefined,
-    },
-    {
-      question: 'Bu bir deneme sorusudur 4',
-      answers: ['Deneme 1', 'Deneme 2', 'Deneme 3', 'Deneme 4'],
-      answer: undefined,
-    },
-  ],
-}) => {
-  const [quiz, setQuiz] = useState(selectedQuiz);
+const QuizAnswerPage = ({route, navigation}) => {
+  const {params: selectedQuiz} = route;
   const [index, setIndex] = useState(0);
-
+  const [quiz, setQuiz] = useState(selectedQuiz);
+  console.log(quiz);
   return (
     <View style={{width: '100%', height: '100%', padding: 16}}>
       <View
@@ -40,7 +18,7 @@ const QuizAnswerPage = ({
         <Text style={{fontSize: 24}}>Soru -) {index + 1}</Text>
       </View>
       <Text style={{marginTop: 8, fontSize: 20, minHeight: 300}}>
-        {quiz[index].question}
+        {quiz.questionList[index].question}
       </Text>
       <View
         style={{
@@ -51,13 +29,15 @@ const QuizAnswerPage = ({
           flexWrap: 'wrap',
           justifyContent: 'space-between',
         }}>
-        {quiz[index].answers.map((answer, answerIndex) => {
+        {quiz.questionList[index].answers.map((answer, answerIndex) => {
           return (
             <TouchableOpacity
               key={answer + answerIndex}
               onPress={() => {
-                const tempQuiz = [...quiz];
-                tempQuiz[index].answer = answerIndex;
+                const tempQuiz = {...quiz};
+                tempQuiz.questionList[index].answer = answerIndex;
+                console.log('Normal Quiz', quiz);
+                console.log('Edit Quiz', tempQuiz);
                 setQuiz(tempQuiz);
               }}
               style={{
@@ -71,7 +51,9 @@ const QuizAnswerPage = ({
                 borderRadius: 8,
                 borderWidth: 2,
                 borderColor:
-                  answerIndex === quiz[index].answer ? 'purple' : 'black',
+                  answerIndex === quiz.questionList[index].correctAnswer
+                    ? 'purple'
+                    : 'black',
               }}>
               <Text>
                 {String.fromCharCode(65 + answerIndex)}-){'  '}
@@ -98,7 +80,7 @@ const QuizAnswerPage = ({
           mode={'contained'}>
           Preview
         </Button>
-        {index !== selectedQuiz.length - 1 ? (
+        {index !== quiz.questionList.length - 1 ? (
           <Button
             onPress={() => {
               setIndex(index + 1);
@@ -110,6 +92,7 @@ const QuizAnswerPage = ({
         ) : (
           <Button
             onPress={() => {
+              navigation.goBack();
               console.log('Finish Quiz');
             }}
             style={{borderRadius: 8, width: 120}}
